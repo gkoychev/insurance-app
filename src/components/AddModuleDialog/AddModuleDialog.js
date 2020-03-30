@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, Fragment } from "react";
 import {
   DialogTitle,
   Dialog,
@@ -9,19 +9,32 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
+  makeStyles,
+  Typography
 } from "@material-ui/core";
 
 import modules from "../../data/modules.json";
 
-const AddModuleDialog = ({ open, onClose, onAdd }) => {
-  const [selectedModule, setSelectedModule] = React.useState("");
+const useStyles = makeStyles(theme => ({
+  line: {
+    marginTop: theme.spacing(2)
+  }
+}));
 
-  const handleChange = event => setSelectedModule(event.target.value);
+const AddModuleDialog = ({ open, onClose, onAdd }) => {
+  const [selectedModuleId, setSelectedModuleId] = React.useState("");
+  const classes = useStyles();
+
+  const handleChange = event => setSelectedModuleId(event.target.value);
   const handleClose = () => {
-    setSelectedModule("");
+    setSelectedModuleId("");
     onClose();
   };
+
+  const selectedModule = useMemo(() => {
+    return modules.find(module => module.id === selectedModuleId);
+  }, [selectedModuleId]);
 
   return (
     <Dialog
@@ -41,7 +54,7 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={selectedModule}
+            value={selectedModuleId}
             onChange={handleChange}
           >
             {modules.map(module => (
@@ -50,14 +63,18 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
           </Select>
         </FormControl>
 
-        {/* <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-        /> */}
+        {!!selectedModule && (
+          <Fragment>
+            <FormControl className={classes.line}>
+              {/* <InputLabel htmlFor="my-input">Risk</InputLabel> */}
+              <Typography>Risk: {selectedModule.risk * 100}%</Typography>
+              {/* <InputBase
+                value={selectedModule.risk}
+                
+              /> */}
+            </FormControl>
+          </Fragment>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
