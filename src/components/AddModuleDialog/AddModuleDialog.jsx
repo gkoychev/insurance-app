@@ -30,6 +30,7 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
 
   const handleAdd = () => {
     onAdd({ moduleId: selectedModuleId, currentCoverage });
+    setSelectedModuleId("");
   };
 
   const handleModuleChange = coverage => {

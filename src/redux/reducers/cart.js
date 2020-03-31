@@ -9,7 +9,7 @@ export function addModuleToCart(item) {
   return { type: ADD, item };
 }
 
-export function removeModuleToCart(id) {
+export function removeModuleFromCart(id) {
   return { type: REMOVE, id };
 }
 
@@ -24,7 +24,7 @@ const reducer = createReducer(initialState, {
 
   [REMOVE]: (state, { id }) => ({
     ...state,
-    items: state.items.filter(item => item.id !== id)
+    items: state.items.filter(item => item.moduleId !== id)
   })
 });
 
