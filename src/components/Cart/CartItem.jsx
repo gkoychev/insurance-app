@@ -51,8 +51,8 @@ const CartItem = ({ item }) => {
         className={classes.currency}
       />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <DeleteIcon onClick={handleDeleteClick} />
+        <IconButton edge="end" onClick={handleDeleteClick}>
+          <DeleteIcon />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>
