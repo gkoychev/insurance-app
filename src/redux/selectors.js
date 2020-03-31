@@ -3,6 +3,8 @@ import { createSelector } from "reselect";
 const getCartItems = state => state.cart.items;
 const getModules = state => state.app.modules;
 
+//todo: add tests
+
 export const getCartDetails = createSelector(
   [getCartItems, getModules],
   (cartItems, modules) =>

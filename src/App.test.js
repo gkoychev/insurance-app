@@ -1,9 +1,8 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { mount } from "enzyme";
 import App from "./App";
 
-test("renders learn react link", () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/Insurance Demo/i);
-  expect(linkElement).toBeInTheDocument();
+it("should render App", () => {
+  const wrapper = mount(<App />);
+  expect(wrapper.find("Main").exists()).toBe(true);
 });

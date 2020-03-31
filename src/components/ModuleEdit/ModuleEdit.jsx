@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Typography,
   Slider,
@@ -129,6 +130,10 @@ const ModuleEdit = ({ data, onChange }) => {
 };
 
 ModuleEdit.defaultProps = {
+  data: PropTypes.shape({
+    risk: PropTypes.number,
+    coverage: PropTypes.number
+  }),
   onChange: noop
 };
 

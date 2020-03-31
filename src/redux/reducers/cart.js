@@ -2,8 +2,8 @@ import { v1 as uuid } from "uuid";
 import { createReducer } from "../../utils";
 
 // Actions
-const ADD = "my-app/cart/ADD";
-const REMOVE = "my-app/cart/REMOVE";
+export const ADD = "my-app/cart/ADD";
+export const REMOVE = "my-app/cart/REMOVE";
 
 // Action Creators
 export function addModuleToCart(item) {
@@ -15,7 +15,7 @@ export function removeModuleFromCart(id) {
 }
 
 // Initial State
-const initialState = {
+export const initialState = {
   items: []
 };
 
