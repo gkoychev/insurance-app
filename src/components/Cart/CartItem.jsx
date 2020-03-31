@@ -42,7 +42,9 @@ const CartItem = ({ item }) => {
       </ListItemAvatar>
       <ListItemText
         primary={name}
-        secondary={`risk: ${formatPercent(risk * 100)}`}
+        secondary={`risk: ${formatPercent(
+          risk * 100
+        )} / coverage: ${currentCoverage}`}
       />
       <ListItemText
         primary={formatCurrency(price)}

@@ -15,3 +15,15 @@ export const getCartDetails = createSelector(
     });
   }
 );
+
+export const getCartTotal = createSelector(
+  [getCartItems, getModules],
+  (cartItems, modules) => {
+    return cartItems.reduce((sum, item) => {
+      const foundModule = modules.find(mod => mod.id === item.moduleId);
+      const price = foundModule.risk * item.currentCoverage;
+      sum += price;
+      return sum;
+    }, 0);
+  }
+);
