@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import {
   DialogTitle,
@@ -94,6 +95,12 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+AddModuleDialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  onAdd: PropTypes.func
 };
 
 export default AddModuleDialog;

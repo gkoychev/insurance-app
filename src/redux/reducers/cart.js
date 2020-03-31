@@ -1,3 +1,4 @@
+import { v1 as uuid } from "uuid";
 import { createReducer } from "../../utils";
 
 // Actions
@@ -20,11 +21,14 @@ const initialState = {
 
 // Reducer
 const reducer = createReducer(initialState, {
-  [ADD]: (state, { item }) => ({ ...state, items: [...state.items, item] }),
+  [ADD]: (state, { item }) => ({
+    ...state,
+    items: [...state.items, { ...item, id: uuid() }]
+  }),
 
   [REMOVE]: (state, { id }) => ({
     ...state,
-    items: state.items.filter(item => item.moduleId !== id)
+    items: state.items.filter(item => item.id !== id)
   })
 });
 
