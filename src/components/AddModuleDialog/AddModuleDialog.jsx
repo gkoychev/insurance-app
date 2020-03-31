@@ -68,7 +68,9 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
               onChange={handleChange}
             >
               {modules.map(module => (
-                <MenuItem value={module.id}>{module.name}</MenuItem>
+                <MenuItem key={module.id} value={module.id}>
+                  {module.name}
+                </MenuItem>
               ))}
             </Select>
           </Grid>

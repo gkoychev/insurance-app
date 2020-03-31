@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
-import AddModuleContainer from "../../containers/AddModuleContainer";
+import AddModuleButton from "../AddModuleButton";
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -17,7 +17,7 @@ const AppHeader = () => {
         <Typography variant="h6" className={classes.title}>
           Insurance Demo
         </Typography>
-        <AddModuleContainer />
+        <AddModuleButton />
       </Toolbar>
     </AppBar>
   );

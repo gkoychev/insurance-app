@@ -1,25 +1,25 @@
 [
   {
     "id": 1,
-    "name": "package 1",
+    "name": "Bike",
     "coverage": { "min": 0, "max": 3000 },
     "risk": 0.3
   },
   {
     "id": 2,
-    "name": "package 2",
+    "name": "Jewelry",
     "coverage": { "min": 500, "max": 10000 },
     "risk": 0.05
   },
   {
     "id": 3,
-    "name": "package 3",
+    "name": "Electronics",
     "coverage": { "min": 500, "max": 6000 },
     "risk": 0.35
   },
   {
     "id": 4,
-    "name": "package 4",
+    "name": "Sports Equipment",
     "coverage": { "min": 0, "max": 20000 },
     "risk": 0.3
   }

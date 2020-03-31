@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
 import AddCircle from "@material-ui/icons/AddCircle";
 
-import AddModuleDialog from "../../components/AddModuleDialog";
+import AddModuleDialog from "../AddModuleDialog";
 import { addModuleToCart } from "../../redux/reducers/cart";
 
-const AddModuleContainer = () => {
+const AddModuleButton = () => {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -42,4 +42,4 @@ const AddModuleContainer = () => {
   );
 };
 
-export default AddModuleContainer;
+export default AddModuleButton;
