@@ -7,6 +7,9 @@ import {
   Input,
   Tooltip
 } from "@material-ui/core";
+import noop from "lodash/noop";
+import { useMemo } from "react";
+import { formatPercent, formatCurrency } from "../utils";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -17,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// todo: move to other place
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
 
@@ -27,7 +31,16 @@ function ValueLabelComponent(props) {
   );
 }
 
-const ModuleEdit = ({ data }) => {
+const normalizeValue = (value, coverage) => {
+  if (value < coverage.min) {
+    return coverage.min;
+  } else if (value > coverage.max) {
+    return coverage.max;
+  }
+  return value;
+};
+
+const ModuleEdit = ({ data, onChange }) => {
   const { risk, coverage } = data;
   const sliderStep = (coverage.max - coverage.min || 1) / 100;
 
@@ -36,19 +49,26 @@ const ModuleEdit = ({ data }) => {
   const [currentCoverage, setCurrentCoverage] = useState(coverage.min);
 
   const handleInputChange = event => {
-    setCurrentCoverage(event.target.value === "" ? "" : +event.target.value);
+    const newValue = event.target.value === "" ? "" : +event.target.value;
+    // const value = normalizeValue(newValue, coverage);
+    setCurrentCoverage(newValue);
+    onChange(newValue);
   };
 
   const handleSliderChange = (event, newValue) => {
     setCurrentCoverage(newValue);
+    onChange(newValue);
   };
+
   const handleBlur = () => {
-    if (currentCoverage < coverage.min) {
-      setCurrentCoverage(coverage.min);
-    } else if (currentCoverage > coverage.max) {
-      setCurrentCoverage(coverage.max);
-    }
+    const newValue = normalizeValue(currentCoverage, coverage);
+    setCurrentCoverage(newValue);
+    onChange(newValue);
   };
+
+  const price = useMemo(() => {
+    return currentCoverage * risk;
+  }, [currentCoverage, risk]);
 
   return (
     <Grid container spacing={2} className={classes.container}>
@@ -59,7 +79,7 @@ const ModuleEdit = ({ data }) => {
         <Input
           fullWidth
           className={classes.input}
-          value={`${risk * 100}%`}
+          value={formatPercent(risk * 100)}
           margin="dense"
           disabled
         />
@@ -96,8 +116,18 @@ const ModuleEdit = ({ data }) => {
           step={sliderStep}
         />
       </Grid>
+      <Grid item xs={3}>
+        <Typography variant="h6">Price:</Typography>
+      </Grid>
+      <Grid item xs={3}>
+        <Typography variant="h6">{formatCurrency(price)}</Typography>
+      </Grid>
     </Grid>
   );
+};
+
+ModuleEdit.defaultProps = {
+  onChange: noop
 };
 
 export default ModuleEdit;

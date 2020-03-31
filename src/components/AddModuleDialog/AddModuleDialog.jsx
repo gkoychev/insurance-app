@@ -6,8 +6,6 @@ import {
   DialogContentText,
   DialogActions,
   Button,
-  FormControl,
-  InputLabel,
   Select,
   MenuItem,
   Grid,
@@ -32,6 +30,7 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
 
   return (
     <Dialog
+      fullWidth
       open={open}
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
