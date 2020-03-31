@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   DialogTitle,
   Dialog,
@@ -12,9 +13,7 @@ import {
   Typography
 } from "@material-ui/core";
 
-// import modules from "../../data/modules.json";
 import ModuleEdit from "../ModuleEdit";
-import { useSelector } from "react-redux";
 
 const AddModuleDialog = ({ open, onClose, onAdd }) => {
   const [selectedModuleId, setSelectedModuleId] = React.useState("");

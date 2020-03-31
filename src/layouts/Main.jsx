@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
-import AppHeader from "../components/AppHeader/AppHeader";
+import AppHeader from "../components/AppHeader";
 
 const useStyles = makeStyles(theme => ({
   content: {

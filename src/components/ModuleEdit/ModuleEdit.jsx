@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import noop from "lodash/noop";
 import { useMemo } from "react";
-import { formatPercent, formatCurrency } from "../utils";
+import { formatPercent, formatCurrency } from "../../utils";
 import { useEffect } from "react";
 
 const useStyles = makeStyles(theme => ({

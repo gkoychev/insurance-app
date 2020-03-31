@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
-import AddModuleContainer from "../../containers/AddModuleContainer/AddModuleContainer";
+import AddModuleContainer from "../../containers/AddModuleContainer";
 
 const useStyles = makeStyles(theme => ({
   title: {
