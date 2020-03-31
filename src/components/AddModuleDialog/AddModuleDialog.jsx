@@ -49,7 +49,7 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Add Insuranse Module</DialogTitle>
+      <DialogTitle id="form-dialog-title">Add Insurance Module</DialogTitle>
       <DialogContent>
         <DialogContentText>
           Please choose insurance module from the options below
