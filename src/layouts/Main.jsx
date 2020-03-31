@@ -1,14 +1,20 @@
 import React from "react";
-import { Container, makeStyles, IconButton, Tooltip } from "@material-ui/core";
+import {
+  Container,
+  makeStyles,
+  Paper,
+  Typography,
+  Box
+} from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 import AppHeader from "../components/AppHeader/AppHeader";
 
 const useStyles = makeStyles(theme => ({
   content: {
-    minHeight: 600,
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.primary.light
+    height: "calc(100vh - 64px)",
+    overflowY: "auto"
   }
 }));
 
@@ -18,13 +24,14 @@ const Main = () => {
   return (
     <Container maxWidth="md">
       <AppHeader />
-      <div className={classes.content}>
-        <Tooltip title="Shopping Cart">
-          <IconButton>
+      <Paper className={classes.content}>
+        <Box display="flex" alignItems="center">
+          <Box mr={1} ml={1} display="flex">
             <ShoppingCartIcon />
-          </IconButton>
-        </Tooltip>
-      </div>
+          </Box>
+          <Typography variant="h5">Shopping Cart</Typography>
+        </Box>
+      </Paper>
     </Container>
   );
 };

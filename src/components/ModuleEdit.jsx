@@ -10,6 +10,7 @@ import {
 import noop from "lodash/noop";
 import { useMemo } from "react";
 import { formatPercent, formatCurrency } from "../utils";
+import { useEffect } from "react";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -52,23 +53,24 @@ const ModuleEdit = ({ data, onChange }) => {
     const newValue = event.target.value === "" ? "" : +event.target.value;
     // const value = normalizeValue(newValue, coverage);
     setCurrentCoverage(newValue);
-    onChange(newValue);
   };
 
   const handleSliderChange = (event, newValue) => {
     setCurrentCoverage(newValue);
-    onChange(newValue);
   };
 
   const handleBlur = () => {
     const newValue = normalizeValue(currentCoverage, coverage);
     setCurrentCoverage(newValue);
-    onChange(newValue);
   };
 
   const price = useMemo(() => {
     return currentCoverage * risk;
   }, [currentCoverage, risk]);
+
+  useEffect(() => {
+    onChange(currentCoverage);
+  }, [onChange, currentCoverage]);
 
   return (
     <Grid container spacing={2} className={classes.container}>

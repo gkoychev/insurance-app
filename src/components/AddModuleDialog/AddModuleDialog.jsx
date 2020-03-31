@@ -12,21 +12,34 @@ import {
   Typography
 } from "@material-ui/core";
 
-import modules from "../../data/modules.json";
+// import modules from "../../data/modules.json";
 import ModuleEdit from "../ModuleEdit";
+import { useSelector } from "react-redux";
 
 const AddModuleDialog = ({ open, onClose, onAdd }) => {
   const [selectedModuleId, setSelectedModuleId] = React.useState("");
+  const [currentCoverage, setCurrentCoverage] = React.useState("");
+
+  const modules = useSelector(state => state.app.modules);
 
   const handleChange = event => setSelectedModuleId(event.target.value);
+
   const handleClose = () => {
     setSelectedModuleId("");
     onClose();
   };
 
+  const handleAdd = () => {
+    onAdd({ moduleId: selectedModuleId, currentCoverage });
+  };
+
+  const handleModuleChange = coverage => {
+    setCurrentCoverage(coverage);
+  };
+
   const selectedModule = useMemo(() => {
     return modules.find(module => module.id === selectedModuleId);
-  }, [selectedModuleId]);
+  }, [modules, selectedModuleId]);
 
   return (
     <Dialog
@@ -62,14 +75,18 @@ const AddModuleDialog = ({ open, onClose, onAdd }) => {
         </Grid>
 
         {!!selectedModule && (
-          <ModuleEdit data={selectedModule} key={selectedModuleId} />
+          <ModuleEdit
+            data={selectedModule}
+            key={selectedModuleId}
+            onChange={handleModuleChange}
+          />
         )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={onAdd} color="primary">
+        <Button onClick={handleAdd} color="primary">
           Add
         </Button>
       </DialogActions>
