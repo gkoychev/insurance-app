@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { calculatePrice } from "../utils/price";
 
 const getCartItems = state => state.cart.items;
 const getModules = state => state.app.modules;
@@ -22,7 +23,7 @@ export const getCartTotal = createSelector(
   (cartItems, modules) =>
     cartItems.reduce((sum, item) => {
       const foundModule = modules.find(mod => mod.id === item.moduleId);
-      const price = foundModule.risk * item.currentCoverage;
+      const price = calculatePrice(item.currentCoverage, foundModule.risk);
       sum += price;
       return sum;
     }, 0)

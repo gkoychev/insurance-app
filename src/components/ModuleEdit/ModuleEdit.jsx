@@ -12,6 +12,7 @@ import noop from "lodash/noop";
 import { useMemo } from "react";
 import { formatPercent, formatCurrency } from "../../utils";
 import { useEffect } from "react";
+import { calculatePrice } from "../../utils/price";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -66,7 +67,7 @@ const ModuleEdit = ({ data, onChange }) => {
   };
 
   const price = useMemo(() => {
-    return currentCoverage * risk;
+    return calculatePrice(currentCoverage, risk);
   }, [currentCoverage, risk]);
 
   useEffect(() => {

@@ -15,6 +15,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import { formatCurrency, formatPercent } from "../../utils";
 import { removeModuleFromCart } from "../../redux/reducers/cart";
+import { calculatePrice } from "../../utils/price";
 
 const useStyles = makeStyles(theme => ({
   currency: {
@@ -32,7 +33,7 @@ const CartItem = ({ item }) => {
     dispatch(removeModuleFromCart(id));
   };
 
-  const price = currentCoverage * risk;
+  const price = calculatePrice(currentCoverage, risk);
   return (
     <ListItem>
       <ListItemAvatar>
